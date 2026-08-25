@@ -10,6 +10,11 @@ def test_false_add():
 def test_sub():
     assert app.sub(1,2) == -1
 
+def test_sub2():
+    assert app.sub(2-1) == 1
+
 def test_false_sub():
     assert app.sub(1,2) != 4
+
+
 
