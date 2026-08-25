@@ -1,0 +1,10 @@
+name: run python tests
+on:
+    push:
+        branches:
+            - main
+jobs:
+    runtests:
+        runs-on: ubuntu-latest
+        steps:
+            - run: python  -c "print('still i need to config to run the tests')"
