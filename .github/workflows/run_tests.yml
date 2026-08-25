@@ -3,6 +3,8 @@ on:
     push:
         branches:
             - main
+            - "feature/**"
+            - dev
 jobs:
     runtests:
         runs-on: ubuntu-latest
