@@ -1,0 +1,48 @@
+name: Build and Deploy
+
+on:
+  workflow_dispatch:
+
+jobs:
+
+  build:
+    runs-on: ubuntu-24.04
+
+    outputs:
+      image-tag: ${{ steps.version.outputs.image-tag }}
+
+    steps:
+
+      - name: Read application version
+        id: version
+        run: |
+          VERSION="2.5.1"
+
+          echo "APP_VERSION=$VERSION" >> "$GITHUB_ENV"
+          echo "image-tag=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Build Docker image
+        run: |
+          echo "Building Docker image..."
+          echo "Image: myapp:$APP_VERSION"
+
+      - name: Run tests
+        run: |
+          echo "Running tests for version $APP_VERSION"
+
+      - name: Show step output
+        run: |
+          echo "Step output: ${{ steps.version.outputs.image-tag }}"
+
+
+  deploy:
+    runs-on: ubuntu-24.04
+
+    needs: build
+
+    steps:
+
+      - name: Deploy application
+        run: |
+          echo "Deploying Docker image:"
+          echo "myapp:${{ needs.build.outputs.image-tag }}"
