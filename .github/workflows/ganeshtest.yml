@@ -1,0 +1,12 @@
+name: run python tests
+on:
+    push:
+        branches:
+            - main
+            - "feature/**"
+            - dev
+jobs:
+    runtests:
+        runs-on: ubuntu-latest
+        steps:
+            - run: python  -c "print('hi this is ganesh')"
